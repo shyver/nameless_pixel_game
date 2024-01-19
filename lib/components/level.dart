@@ -21,6 +21,8 @@ class Level extends World with HasGameRef<PixelAdventure> {
   FutureOr<void> onLoad() async {
     level = await TiledComponent.load('$levelName.tmx', Vector2.all(16));
     add(level);
+    game.heartCount = 3;
+    game.updateHearts();
 
     _scrollingBackground();
     _spawningObjects();

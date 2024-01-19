@@ -50,13 +50,12 @@ class Player extends SpriteAnimationGroupComponent
   bool reachedCheckpoint = false;
   List<CollisionBlock> collisionBlocks = [];
   CustomHitbox hitbox =
-      CustomHitbox(offsetX: 6, offsetY: 4, width: 22, height: 28);
+      CustomHitbox(offsetX: 6, offsetY: 4, width: 22, height: 26);
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
 
   @override
   FutureOr<void> onLoad() {
-    debugMode = true;
     startingPosition = Vector2(position.x, position.y);
     _loadAllAnimations();
     add(RectangleHitbox(
@@ -75,7 +74,7 @@ class Player extends SpriteAnimationGroupComponent
         _updatePlayerState();
         _updatePlayerMovement(fixedDeltaTime);
         _checkHorizontalCollisions();
-        _applyGravity(dt);
+        _applyGravity(fixedDeltaTime);
         _checkVerticalCollisions();
       }
       accumulatedTime -= fixedDeltaTime;
@@ -109,6 +108,8 @@ class Player extends SpriteAnimationGroupComponent
       }
       if (other is Saw) {
         _respawn();
+        game.heartCount--;
+        game.updateHearts();
       }
       if (other is Checkpoint) {
         _reachedCheckpoint();
@@ -233,7 +234,7 @@ class Player extends SpriteAnimationGroupComponent
       if (block.isPlatform) {
         if (checkCollision(this, block)) {
           velocity.y = 0;
-          position.y = block.y - hitbox.height;
+          position.y = block.y - hitbox.height - hitbox.offsetY;
           isOnGround = true;
           break;
         }
@@ -299,5 +300,7 @@ class Player extends SpriteAnimationGroupComponent
 
   void collidedWithEnemy() {
     _respawn();
+    game.heartCount--;
+    game.updateHearts();
   }
 }

@@ -28,9 +28,10 @@ class LevelSelector extends StatelessWidget {
           ),
         ),
         const Text(
-          'Select a level',
+          'SELECT A LEVEL',
           style: TextStyle(
             fontSize: 24,
+            fontFamily: 'PixelFont',
           ),
         ),
         Row(

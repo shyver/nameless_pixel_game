@@ -10,8 +10,8 @@
     "fileStates": {
         "level_01.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 0,
@@ -22,14 +22,14 @@
         },
         "level_02.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 316.33333333333337,
-                "y": 92.33333333333331
+                "x": 418.5,
+                "y": 67.5
             }
         },
         "pixel_adventure.tsx": {

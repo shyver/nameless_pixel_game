@@ -5,11 +5,13 @@ import 'package:flame/input.dart';
 import 'package:flame/src/game/overlay_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:pixel_adventure/components/hearts.dart';
 import 'package:pixel_adventure/components/jump_button.dart';
 import 'package:pixel_adventure/components/pause_button.dart';
 import 'package:pixel_adventure/components/player.dart';
 import 'dart:async';
 import 'dart:ui';
+
 
 import 'package:pixel_adventure/components/level.dart';
 
@@ -29,6 +31,8 @@ class PixelAdventure extends FlameGame
   late Level world1;
   bool playSounds = true;
   double soundVolume = 1.0;
+  int heartCount = 3;
+  List<Heart> hearts = [];
   List<String> levelNames = ['level_02', 'level_01'];
   int currentLevelIndex = 0;
   @override
@@ -37,6 +41,7 @@ class PixelAdventure extends FlameGame
 
     _loadLevel();
     addJoystick();
+    updateHearts();
     add(JumpButton());
 
     return super.onLoad();
@@ -47,6 +52,23 @@ class PixelAdventure extends FlameGame
     updateJoystick();
     // TODO: implement update
     super.update(dt);
+  }
+
+  void updateHearts() {
+    // Step 2
+    hearts.forEach((heart) {
+      remove(heart); // remove heart from the game
+    });
+    hearts.clear(); // clear the list of hearts
+
+    for (var i = 0; i < heartCount; i++) {
+      Heart heart = Heart(position: Vector2(size.x - 40 - i * 40, 10));
+      hearts.add(heart);
+      add(heart); // add heart to the game
+    }
+    if (heartCount == 0) {
+      overlays.add('GameOver');
+    }
   }
 
   JoystickComponent addJoystick() {

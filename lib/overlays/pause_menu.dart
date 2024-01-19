@@ -72,6 +72,7 @@ class PauseMenu extends StatelessWidget {
                   onPressed: () {
                     game.overlays.remove('PauseMenu');
                     game.overlays.add('MainMenu');
+                    game.reloadLevel();
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: blackColor,

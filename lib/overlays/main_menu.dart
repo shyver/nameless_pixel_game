@@ -18,6 +18,7 @@ class MainMenu extends StatelessWidget {
       color: Colors.transparent,
       child: Center(
         child: Container(
+          
           padding: const EdgeInsets.all(10.0),
           height: game.size.y,
           width: game.size.x,
@@ -35,28 +36,47 @@ class MainMenu extends StatelessWidget {
                     fontFamily: 'PixelFont'),
               ),
               const SizedBox(height: 40),
-              SizedBox(
-                width: 200,
-                height: 75,
-                child: TextButton(
-                  onPressed: () {
-                    game.overlays.remove('MainMenu');
-                    game.resumeEngine();
-                  },
-                  style: TextButton.styleFrom(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      game.overlays.remove('MainMenu');
+                      game.overlays.add('SkinSelector');
+                    },
+                    style: TextButton.styleFrom(
                       backgroundColor: blackTextColor,
-                      shape: const StadiumBorder(
-                          side: BorderSide(color: whiteTextColor, width: 2.0))),
-                  child: const Text(
-                    'Play',
-                    style: TextStyle(
-                        fontSize: 30.0,
-                        color: whiteTextColor,
-                        fontFamily: 'PixelFont'),
+                    ),
+                    child: RawImage(
+                      image: game.images.fromCache('Menu/Buttons/skin.png'),
+                    ),
                   ),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      game.overlays.remove('MainMenu');
+                      game.resumeEngine();
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: blackTextColor,
+                    ),
+                    child: RawImage(
+                      image: game.images.fromCache('Menu/Buttons/Play.png'),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      game.overlays.remove('MainMenu');
+                      game.overlays.add('Settings');
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: blackTextColor,
+                    ),
+                    child: RawImage(
+                      image: game.images.fromCache('Menu/Buttons/Settings.png'),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),
