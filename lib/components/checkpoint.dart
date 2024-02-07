@@ -20,7 +20,6 @@ class Checkpoint extends SpriteAnimationComponent
             .fromCache('Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png'),
         SpriteAnimationData.sequenced(
             amount: 1, stepTime: 1, textureSize: Vector2.all(64)));
-    // TODO: implement onLoad
     return super.onLoad();
   }
 
@@ -28,12 +27,10 @@ class Checkpoint extends SpriteAnimationComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) _reachedCheckpoint();
-    // TODO: implement onCollisionStart
     super.onCollisionStart(intersectionPoints, other);
   }
 
   void _reachedCheckpoint() async {
-    const flagDuration = Duration(milliseconds: 1300);
     animation = SpriteAnimation.fromFrameData(
         game.images.fromCache(
             'Items/Checkpoints/Checkpoint/Checkpoint (Flag Out) (64x64).png'),

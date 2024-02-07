@@ -30,7 +30,6 @@ class Fruit extends SpriteAnimationComponent
         game.images.fromCache('Items/Fruits/$fruit.png'),
         SpriteAnimationData.sequenced(
             amount: 17, stepTime: stepTime, textureSize: Vector2.all(32)));
-    // TODO: implement onLoad
     return super.onLoad();
   }
 
@@ -40,7 +39,8 @@ class Fruit extends SpriteAnimationComponent
       if (game.playSounds) {
         FlameAudio.play('collectFruit.wav', volume: game.soundVolume);
       }
-
+      game.fruitcount++;
+      game.updateFruitCount();
       animation = SpriteAnimation.fromFrameData(
           game.images.fromCache('Items/Fruits/Collected.png'),
           SpriteAnimationData.sequenced(

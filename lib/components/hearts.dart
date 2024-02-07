@@ -11,7 +11,6 @@ class Heart extends SpriteComponent with HasGameRef<PixelAdventure> {
     priority = 15;
     sprite = Sprite(game.images.fromCache('HUD/heart.png'));
     size = Vector2(32, 32);
-    // TODO: implement onLoad
     return super.onLoad();
   }
 }

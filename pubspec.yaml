@@ -38,6 +38,7 @@ dependencies:
   flame_tiled: ^1.18.2
   flame_audio: ^2.1.7
   bonfire: ^3.0.0
+  shared_preferences: ^2.2.2
   google_mobile_ads: ^4.0.0
 
 dev_dependencies:
@@ -76,9 +77,11 @@ flutter:
     - assets/images/Items/Fruits/
     - assets/images/Items/Checkpoints/Checkpoint/
     - assets/images/Traps/Saw/
+    - assets/images/Traps/Spikes/
     - assets/images/Enemies/Chicken/
     - assets/images/Menu/Buttons/
     - assets/images/Menu/Levels/
+    - assets/images/Menu/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -95,6 +98,9 @@ flutter:
     - family: PixelFont
       fonts:
         - asset: assets/fonts/HachicroUndertaleBattleFontRegular-L3zlg.ttf
+    - family: Arcade
+      fonts:
+        - asset: assets/fonts/arcade.regular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -20,7 +20,7 @@ class Chicken extends SpriteAnimationGroupComponent
   late final Player player;
   static const stepTime = 0.05;
   static const tileSize = 16;
-  static const runSpeed = 80;
+  static const runSpeed = 130;
   static const _bounceHeight = 260.0;
   final textureSize = Vector2(32, 34);
   Vector2 velocity = Vector2.zero();
@@ -29,6 +29,7 @@ class Chicken extends SpriteAnimationGroupComponent
   double moveDirection = 1;
   double targetDirection = -1;
   bool gotStomped = false;
+  bool running = false;
 
   @override
   FutureOr<void> onLoad() {
@@ -37,7 +38,7 @@ class Chicken extends SpriteAnimationGroupComponent
     add(RectangleHitbox(position: Vector2(4, 6), size: Vector2(24, 26)));
     _loadAllAnimations();
     _calculateRange();
-    // TODO: implement onLoad
+
     return super.onLoad();
   }
 
@@ -48,7 +49,6 @@ class Chicken extends SpriteAnimationGroupComponent
       _movement(dt);
     }
 
-    // TODO: implement update
     super.update(dt);
   }
 
@@ -85,9 +85,17 @@ class Chicken extends SpriteAnimationGroupComponent
     double chickenOffset = (scale.x > 0) ? 0 : -width;
 
     if (playerInRange()) {
+      running = true;
       //player in range
       targetDirection =
           (player.x + playerOffset < position.x + chickenOffset) ? -1 : 1;
+      velocity.x = targetDirection * runSpeed;
+    } else {
+      Future.delayed(const Duration(milliseconds: 400), () {
+        running = false;
+      });
+    }
+    if (running) {
       velocity.x = targetDirection * runSpeed;
     }
     moveDirection = lerpDouble(moveDirection, targetDirection, 0.1) ?? 1;
@@ -115,7 +123,7 @@ class Chicken extends SpriteAnimationGroupComponent
   void collidedWithPlayer() async {
     if (player.velocity.y > 0 && player.y + player.height > position.y) {
       if (game.playSounds) {
-        FlameAudio.play('chickenBounce.wav', volume: game.soundVolume);
+        FlameAudio.play('chickenBounce.wav', volume: game.soundVolume / 2);
       }
       gotStomped = true;
       current = State.hit;

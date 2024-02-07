@@ -8,6 +8,7 @@ import 'package:pixel_adventure/components/chicken.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/fruit.dart';
 import 'package:pixel_adventure/components/player.dart';
+import 'package:pixel_adventure/components/spikes.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 
 class Level extends World with HasGameRef<PixelAdventure> {
@@ -15,6 +16,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
   final Player player;
   Level({required this.levelName, required this.player});
   late TiledComponent level;
+  late Vector2 startingPosition;
   List<CollisionBlock> collisionBlocks = [];
 
   @override
@@ -50,7 +52,8 @@ class Level extends World with HasGameRef<PixelAdventure> {
       for (final spawnPoint in spawnPointsLayer!.objects) {
         switch (spawnPoint.class_) {
           case 'Player':
-            player.position = Vector2(spawnPoint.x, spawnPoint.y);
+            startingPosition = Vector2(spawnPoint.x, spawnPoint.y);
+            player.position = startingPosition;
             player.scale.x = 1;
             add(player);
             break;
@@ -91,6 +94,14 @@ class Level extends World with HasGameRef<PixelAdventure> {
                 offNeg: offNeg,
                 offPos: offPos);
             add(chicken);
+            break;
+          case 'Spikes':
+            final spikes = Spikes(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              stuckTo: spawnPoint.properties.getValue('stuckTo'),
+            );
+            add(spikes);
             break;
           default:
         }

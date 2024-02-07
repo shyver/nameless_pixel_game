@@ -11,6 +11,7 @@ import 'package:pixel_adventure/components/chicken.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/custom_hitbox.dart';
 import 'package:pixel_adventure/components/fruit.dart';
+import 'package:pixel_adventure/components/spikes.dart';
 import 'package:pixel_adventure/components/utils.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 
@@ -21,7 +22,8 @@ enum PlayerState {
   falling,
   hit,
   appearing,
-  disappearing
+  disappearing,
+  climbing
 }
 
 class Player extends SpriteAnimationGroupComponent
@@ -35,10 +37,11 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation hitAnimation;
   late final SpriteAnimation appearingAnimation;
   late final SpriteAnimation disappearingAnimation;
+  late final SpriteAnimation climbingAnimation;
 
   final double stepTime = 0.05;
   final double _gravity = 9.8;
-  final double _jumpForce = 350;
+  final double _jumpForce = 310;
   final double _terminalVelocity = 350;
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -56,6 +59,7 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
+    priority = -1;
     startingPosition = Vector2(position.x, position.y);
     _loadAllAnimations();
     add(RectangleHitbox(
@@ -107,15 +111,24 @@ class Player extends SpriteAnimationGroupComponent
         other.collidedWithPlayer();
       }
       if (other is Saw) {
+        if (!gotHit) {
+          game.heartCount--;
+          game.updateHearts();
+        }
         _respawn();
-        game.heartCount--;
-        game.updateHearts();
       }
       if (other is Checkpoint) {
         _reachedCheckpoint();
       }
       if (other is Chicken) {
         other.collidedWithPlayer();
+      }
+      if (other is Spikes) {
+        if (!gotHit) {
+          game.heartCount--;
+          game.updateHearts();
+        }
+        _respawn();
       }
     }
     super.onCollisionStart(intersectionPoints, other);
@@ -129,6 +142,7 @@ class Player extends SpriteAnimationGroupComponent
     hitAnimation = _spriteAnimation('Hit', 7)..loop = false;
     appearingAnimation = _specialSpriteAnimation('Appearing', 7);
     disappearingAnimation = _specialSpriteAnimation('Desappearing', 7);
+    climbingAnimation = _spriteAnimation('Wall Jump', 4);
 
     //list of all animations
     animations = {
@@ -139,6 +153,7 @@ class Player extends SpriteAnimationGroupComponent
       PlayerState.hit: hitAnimation,
       PlayerState.appearing: appearingAnimation,
       PlayerState.disappearing: disappearingAnimation,
+      PlayerState.climbing: climbingAnimation,
     };
     //set the current animation to idle
     current = PlayerState.running;
@@ -168,7 +183,6 @@ class Player extends SpriteAnimationGroupComponent
 
   void _updatePlayerMovement(double dt) {
     if (hasJumped && isOnGround) _playerJump(dt);
-
     velocity.x = horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
@@ -250,6 +264,7 @@ class Player extends SpriteAnimationGroupComponent
           if (velocity.y < 0) {
             velocity.y = 0;
             position.y = block.y + block.height - hitbox.offsetY;
+            isOnGround = false;
           }
         }
       }
@@ -265,13 +280,13 @@ class Player extends SpriteAnimationGroupComponent
     await animationTicker?.completed;
     animationTicker?.reset();
     scale.x = 1;
-    position = startingPosition - Vector2.all(32);
+    position = game.world1.startingPosition - Vector2.all(32);
     current = PlayerState.appearing;
     await animationTicker?.completed;
     animationTicker?.reset();
 
     velocity = Vector2.zero();
-    position = startingPosition;
+    position = game.world1.startingPosition;
     _updatePlayerState();
     Future.delayed(canMoveDuration, () => gotHit = false);
   }
@@ -291,9 +306,18 @@ class Player extends SpriteAnimationGroupComponent
     animationTicker?.reset();
     reachedCheckpoint = false;
     position = Vector2.all(-640);
-
-    const waitTochangeDuration = Duration(seconds: 3);
-    Future.delayed(waitTochangeDuration, () => game.loadNextLevel()
+    game.totalFruitCount = (game.totalFruitCount ?? 0) + game.fruitcount;
+    game.prefs.setInt('totalFruitCount', game.totalFruitCount ?? 0);
+    const waitTochangeDuration = Duration(seconds: 2);
+    Future.delayed(waitTochangeDuration, () {
+      game.overlays.add('Won');
+      game.fruitcount = 0;
+      game.updateFruitCount();
+      if (game.currentLevelIndex == (game.openLevels ?? 1) - 1) {
+        game.openLevels = (game.openLevels ?? 1) + 1;
+        game.prefs.setInt('OpenLevels', game.openLevels ?? 1);
+      }
+    }
         //switch level
         );
   }

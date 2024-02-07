@@ -11,7 +11,6 @@ class PauseButton extends SpriteComponent
     priority = 1;
     sprite = Sprite(game.images.fromCache('HUD/pause.png'));
     position = Vector2(10, 10);
-    // TODO: implement onLoad
     return super.onLoad();
   }
 

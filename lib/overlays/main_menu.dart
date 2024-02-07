@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:pixel_adventure/components/fruits_hud.dart';
 
 import '../pixel_adventure.dart';
 
@@ -11,25 +12,31 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const blackTextColor = Color.fromRGBO(0, 0, 0, 1.0);
     const whiteTextColor = Color.fromRGBO(255, 255, 255, 1.0);
 
     return Material(
       color: Colors.transparent,
       child: Center(
         child: Container(
-          
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/Menu/MenuBackground.png'),
+                fit: BoxFit.cover),
+          ),
           padding: const EdgeInsets.all(10.0),
           height: game.size.y,
           width: game.size.x,
-          decoration: const BoxDecoration(
-            color: blackTextColor,
-          ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Container(
+                height: 50,
+                width: game.size.x,
+                alignment: Alignment.topRight,
+                child: FruitsHUD(game: game),
+              ),
               const Text(
-                'Pixel Adventure',
+                'PIXEL PANIC!',
                 style: TextStyle(
                     color: whiteTextColor,
                     fontSize: 24,
@@ -43,9 +50,11 @@ class MainMenu extends StatelessWidget {
                     onPressed: () {
                       game.overlays.remove('MainMenu');
                       game.overlays.add('SkinSelector');
+                      game.enableMusic = false;
+                      game.prefs.setBool('enableMusic', false);
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: blackTextColor,
+                      backgroundColor: Colors.transparent,
                     ),
                     child: RawImage(
                       image: game.images.fromCache('Menu/Buttons/skin.png'),
@@ -53,11 +62,15 @@ class MainMenu extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      game.overlays.remove('MainMenu');
+                      game.reloadLevel();
                       game.resumeEngine();
+                      game.overlays.remove('MainMenu');
+                      if (!game.interstitialAdManager.isAdLoaded) {
+                        game.interstitialAdManager.loadAd();
+                      }
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: blackTextColor,
+                      backgroundColor: Colors.transparent,
                     ),
                     child: RawImage(
                       image: game.images.fromCache('Menu/Buttons/Play.png'),
@@ -65,17 +78,20 @@ class MainMenu extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      game.overlays.remove('MainMenu');
-                      game.overlays.add('Settings');
+                      // game.overlays.remove('MainMenu');
+                      game.overlays.add('LevelSelector');
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: blackTextColor,
+                      backgroundColor: Colors.transparent,
                     ),
                     child: RawImage(
-                      image: game.images.fromCache('Menu/Buttons/Settings.png'),
+                      image: game.images.fromCache('Menu/Buttons/Levels.png'),
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 40,
               ),
             ],
           ),

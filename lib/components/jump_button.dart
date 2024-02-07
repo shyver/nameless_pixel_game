@@ -17,14 +17,13 @@ class JumpButton extends SpriteComponent
     sprite = Sprite(game.images.fromCache('HUD/JumpButton.png'));
     position = Vector2(
         game.size.x - margin - buttonSize, game.size.y - margin - buttonSize);
-    // TODO: implement onLoad
+
     return super.onLoad();
   }
 
   @override
   void onTapDown(TapDownEvent event) {
     game.player.hasJumped = true;
-    // TODO: implement onTapDown
     super.onTapDown(event);
   }
 

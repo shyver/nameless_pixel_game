@@ -8,7 +8,11 @@ class LevelSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/images/Menu/MenuBackground.png'),
+            fit: BoxFit.cover),
+      ),
       width: game.size.x,
       height: game.size.y,
       child:
@@ -20,7 +24,6 @@ class LevelSelector extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               game.overlays.remove('LevelSelector');
-              game.overlays.add('PauseMenu');
             },
             child: RawImage(
               image: game.images.fromCache('Menu/Buttons/Back.png'),
@@ -34,25 +37,36 @@ class LevelSelector extends StatelessWidget {
             fontFamily: 'PixelFont',
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: game.levelNames
-              .map((e) => Container(
-                    width: 100,
-                    height: 100,
-                    child: TextButton(
-                        onPressed: () {
-                          game.overlays.remove('LevelSelector');
-                          game.currentLevelIndex = game.levelNames.indexOf(e);
-                          game.reloadLevel();
-                          game.resumeEngine();
-                        },
-                        child: RawImage(
-                          image: game.images.fromCache(
-                              'Menu/Levels/0${game.levelNames.indexOf(e) + 1}.png'),
-                        )),
-                  ))
-              .toList(),
+        Wrap(
+          spacing: 8.0, // gap between adjacent chips
+          runSpacing: 4.0, // gap between lines
+          direction: Axis.horizontal,
+          children: game.levelNames.map((e) {
+            late String nameIndex;
+            final levelIndex = game.levelNames.indexOf(e) + 1;
+            if (levelIndex < 10) {
+              nameIndex = '0$levelIndex';
+            } else {
+              nameIndex = '$levelIndex';
+            }
+            return Container(
+              width: 100,
+              height: 100,
+              child: TextButton(
+                  onPressed: () {
+                    if (game.levelNames.indexOf(e) < (game.openLevels ?? 1)) {
+                      game.overlays.remove('LevelSelector');
+                      game.currentLevelIndex = game.levelNames.indexOf(e);
+                      game.reloadLevel();
+                      game.resumeEngine();
+                    }
+                  },
+                  child: RawImage(
+                    image: game.images.fromCache(
+                        'Menu/Levels/${game.levelNames.indexOf(e) < (game.openLevels ?? 1) ? nameIndex : '${nameIndex}_inactive'}.png'),
+                  )),
+            );
+          }).toList(),
         ),
         const SizedBox()
       ]),

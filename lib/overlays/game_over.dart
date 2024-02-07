@@ -11,7 +11,11 @@ class GameOver extends StatelessWidget {
     return Container(
       width: game.size.x,
       height: game.size.y,
-      color: Colors.black,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/images/Menu/MenuBackground.png'),
+            fit: BoxFit.cover),
+      ),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         const Text(
@@ -30,7 +34,7 @@ class GameOver extends StatelessWidget {
               game.resumeEngine();
             },
             style: TextButton.styleFrom(
-              backgroundColor: blackColor,
+              backgroundColor: Colors.transparent,
             ),
             child: RawImage(
                 width: 50,
@@ -43,7 +47,7 @@ class GameOver extends StatelessWidget {
               game.overlays.add('LevelSelector');
             },
             style: TextButton.styleFrom(
-              backgroundColor: blackColor,
+              backgroundColor: Colors.transparent,
             ),
             child: RawImage(
                 width: 50,
@@ -57,7 +61,7 @@ class GameOver extends StatelessWidget {
               game.reloadLevel();
             },
             style: TextButton.styleFrom(
-              backgroundColor: blackColor,
+              backgroundColor: Colors.transparent,
             ),
             child: RawImage(
                 width: 50,

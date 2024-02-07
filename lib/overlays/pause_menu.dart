@@ -13,7 +13,11 @@ class PauseMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: blackColor,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/Menu/MenuBackground.png'),
+              fit: BoxFit.cover),
+        ),
         width: game.size.x,
         height: game.size.y,
         child: Column(
@@ -28,9 +32,8 @@ class PauseMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: blackColor,
-                  ),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.transparent),
                   onPressed: () {
                     game.resumeEngine();
                     game.overlays.remove('PauseMenu');
@@ -44,11 +47,12 @@ class PauseMenu extends StatelessWidget {
                   onPressed: () {
                     game.pauseEngine();
                     game.reloadLevel();
+
                     game.overlays.remove('PauseMenu');
                     game.resumeEngine();
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: blackColor,
+                    backgroundColor: Colors.transparent,
                   ),
                   child: RawImage(
                       width: 50,
@@ -57,11 +61,10 @@ class PauseMenu extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    game.overlays.remove('PauseMenu');
                     game.overlays.add('LevelSelector');
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: blackColor,
+                    backgroundColor: Colors.transparent,
                   ),
                   child: RawImage(
                       width: 50,
@@ -72,10 +75,9 @@ class PauseMenu extends StatelessWidget {
                   onPressed: () {
                     game.overlays.remove('PauseMenu');
                     game.overlays.add('MainMenu');
-                    game.reloadLevel();
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: blackColor,
+                    backgroundColor: Colors.transparent,
                   ),
                   child: RawImage(
                       width: 50,
