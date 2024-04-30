@@ -1,10 +1,9 @@
-import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class PauseMenu extends StatelessWidget {
   final PixelAdventure game;
-  PauseMenu({super.key, required this.game});
+  const PauseMenu({super.key, required this.game});
 
   static const blackColor = Color(0xFF000000);
   static const whiteColor = Color(0xFFFFFFFF);

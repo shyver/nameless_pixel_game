@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:pixel_adventure/components/player.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/components/player.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class Checkpoint extends SpriteAnimationComponent
     with HasGameRef<PixelAdventure>, CollisionCallbacks {

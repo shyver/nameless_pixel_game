@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class Heart extends SpriteComponent with HasGameRef<PixelAdventure> {
   Heart({super.position});

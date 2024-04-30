@@ -1,6 +1,5 @@
-import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/components/fruits_hud.dart';
+import 'package:peckpanic/components/fruits_hud.dart';
 
 import '../pixel_adventure.dart';
 
@@ -8,7 +7,7 @@ class MainMenu extends StatelessWidget {
   // Reference to parent game.
   final PixelAdventure game;
 
-  MainMenu({super.key, required this.game});
+  const MainMenu({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class MainMenu extends StatelessWidget {
                 child: FruitsHUD(game: game),
               ),
               const Text(
-                'PIXEL PANIC!',
+                'PECK PANIC!',
                 style: TextStyle(
                     color: whiteTextColor,
                     fontSize: 24,
@@ -50,8 +49,6 @@ class MainMenu extends StatelessWidget {
                     onPressed: () {
                       game.overlays.remove('MainMenu');
                       game.overlays.add('SkinSelector');
-                      game.enableMusic = false;
-                      game.prefs.setBool('enableMusic', false);
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.transparent,
@@ -90,9 +87,19 @@ class MainMenu extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                  ),
+                  onPressed: () {
+                    game.overlays.add('About');
+                  },
+                  child: const Text('About Us',
+                      style: TextStyle(
+                          color: whiteTextColor,
+                          fontSize: 30,
+                          fontFamily: 'arcade'))),
             ],
           ),
         ),

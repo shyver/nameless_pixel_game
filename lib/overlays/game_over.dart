@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class GameOver extends StatelessWidget {
   final PixelAdventure game;

@@ -2,22 +2,18 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
-import 'package:flame/src/game/overlay_manager.dart';
 import 'package:flame/text.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:pixel_adventure/components/fruit.dart';
-import 'package:pixel_adventure/components/hearts.dart';
-import 'package:pixel_adventure/components/interstitial_ad.dart';
-import 'package:pixel_adventure/components/jump_button.dart';
-import 'package:pixel_adventure/components/pause_button.dart';
-import 'package:pixel_adventure/components/player.dart';
+import 'package:peckpanic/components/hearts.dart';
+import 'package:peckpanic/components/interstitial_ad.dart';
+import 'package:peckpanic/components/jump_button.dart';
+import 'package:peckpanic/components/pause_button.dart';
+import 'package:peckpanic/components/player.dart';
 import 'dart:async';
-import 'dart:ui';
 
-import 'package:pixel_adventure/components/level.dart';
+import 'package:peckpanic/components/level.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PixelAdventure extends FlameGame
@@ -43,7 +39,6 @@ class PixelAdventure extends FlameGame
   late int? totalFruitCount;
   late int? openLevels;
   late List<String>? openSkins;
-  late bool? enableMusic;
 
   bool playSounds = true;
   double soundVolume = 1.0;
@@ -52,17 +47,18 @@ class PixelAdventure extends FlameGame
 
   List<Heart> hearts = [];
   List<String> levelNames = [
-    'level_11',
-    'level_12',
+    'level_02',
+    'level_04',
+    'level_03',
+    'level_07',
     'level_09',
     'level_10',
-    'level_04',
-    'level_02',
-    'level_05',
-    'level_03',
     'level_01',
+    'level_05',
+    'level_11',
     'level_06',
-    'level_07',
+    'level_08',
+    'level_12',
   ];
   late int? currentLevelIndex;
   @override
@@ -94,11 +90,6 @@ class PixelAdventure extends FlameGame
       await prefs.setStringList('OpenSkins', ['Mask Dude']);
       openSkins = ['Mask Dude'];
     }
-    enableMusic = prefs.getBool('EnableMusic');
-    if (enableMusic == null) {
-      await prefs.setBool('EnableMusic', true);
-      enableMusic = true;
-    }
     interstitialAdManager.loadAd();
     player = Player(character: (character ?? 'Mask Dude'));
     _loadLevel();
@@ -106,7 +97,8 @@ class PixelAdventure extends FlameGame
     updateHearts();
     addFruits();
     add(JumpButton());
-    FlameAudio.loopLongAudio('background.mp3', volume: soundVolume);
+    FlameAudio.bgm.initialize();
+    FlameAudio.bgm.play('background.mp3', volume: soundVolume);
 
     return super.onLoad();
   }
@@ -114,10 +106,13 @@ class PixelAdventure extends FlameGame
   @override
   void update(double dt) {
     updateJoystick();
-    if (!enableMusic!) {
-      FlameAudio.audioCache.clear('background.mp3');
+    if (interstitialAdManager.playing == 1) {
+      FlameAudio.bgm.pause();
     }
-    // TODO: implement update
+    if (interstitialAdManager.playing == 2) {
+      FlameAudio.bgm.resume();
+      interstitialAdManager.playing = 0;
+    }
     super.update(dt);
   }
 
@@ -133,9 +128,10 @@ class PixelAdventure extends FlameGame
 
   void updateHearts() {
     // Step 2
-    hearts.forEach((heart) {
-      remove(heart); // remove heart from the game
-    });
+    for (var i = 0; i < hearts.length; i++) {
+      remove(hearts[i]);
+    }
+
     hearts.clear(); // clear the list of hearts
 
     for (var i = 0; i < heartCount; i++) {

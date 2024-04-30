@@ -1,13 +1,13 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class Won extends StatelessWidget {
   final PixelAdventure game;
-  Won({super.key, required this.game});
+  const Won({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       width: game.size.x,
       height: game.size.y,

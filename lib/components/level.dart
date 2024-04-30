@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:pixel_adventure/components/Saw.dart';
-import 'package:pixel_adventure/components/background_tile.dart';
-import 'package:pixel_adventure/components/checkpoint.dart';
-import 'package:pixel_adventure/components/chicken.dart';
-import 'package:pixel_adventure/components/collision_block.dart';
-import 'package:pixel_adventure/components/fruit.dart';
-import 'package:pixel_adventure/components/player.dart';
-import 'package:pixel_adventure/components/spikes.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/components/saw.dart';
+import 'package:peckpanic/components/background_tile.dart';
+import 'package:peckpanic/components/checkpoint.dart';
+import 'package:peckpanic/components/chicken.dart';
+import 'package:peckpanic/components/collision_block.dart';
+import 'package:peckpanic/components/fruit.dart';
+import 'package:peckpanic/components/player.dart';
+import 'package:peckpanic/components/spikes.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
@@ -49,7 +49,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
     final spawnPointsLayer = level.tileMap.getLayer<ObjectGroup>('Spawnpoints');
 
     if (spawnPointsLayer != null) {
-      for (final spawnPoint in spawnPointsLayer!.objects) {
+      for (final spawnPoint in spawnPointsLayer.objects) {
         switch (spawnPoint.class_) {
           case 'Player':
             startingPosition = Vector2(spawnPoint.x, spawnPoint.y);

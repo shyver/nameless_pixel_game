@@ -4,7 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
 
 class BackgroundTile extends ParallaxComponent {
   final String color;
@@ -21,7 +20,6 @@ class BackgroundTile extends ParallaxComponent {
         baseVelocity: Vector2(0, -scrollSpeed),
         repeat: ImageRepeat.repeat,
         fill: LayerFill.none);
-    // TODO: implement onLoad
     return super.onLoad();
   }
 }

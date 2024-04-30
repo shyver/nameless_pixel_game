@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class NotEnoughFruits extends StatelessWidget {
   final PixelAdventure game;
@@ -17,12 +17,12 @@ class NotEnoughFruits extends StatelessWidget {
         margin: const EdgeInsets.all(120),
         child: Container(
           alignment: Alignment.center,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/HUD/fruitshud.png'),
                 fit: BoxFit.contain),
           ),
-          child: Text('Not enough fruits!',
+          child: const Text('Not enough fruits!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,

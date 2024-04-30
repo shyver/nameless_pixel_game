@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class Saw extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
   final bool isVertical;
@@ -33,10 +33,13 @@ class Saw extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
       rangePos = position.x + offPos * tileSize;
     }
     animation = SpriteAnimation.fromFrameData(
-        game.images.fromCache('Traps/Saw/On (38x38).png'),
-        SpriteAnimationData.sequenced(
-            amount: 8, stepTime: sawSpeed, textureSize: Vector2.all(38),),);
-    // TODO: implement onLoad
+      game.images.fromCache('Traps/Saw/On (38x38).png'),
+      SpriteAnimationData.sequenced(
+        amount: 8,
+        stepTime: sawSpeed,
+        textureSize: Vector2.all(38),
+      ),
+    );
     return super.onLoad();
   }
 
@@ -47,7 +50,6 @@ class Saw extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
     } else {
       _moveHorizontally(dt);
     }
-    // TODO: implement update
     super.update(dt);
   }
 

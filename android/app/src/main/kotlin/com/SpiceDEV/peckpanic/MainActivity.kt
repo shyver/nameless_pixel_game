@@ -1,4 +1,4 @@
-package com.example.pixel_adventure
+package com.SpiceDEV.peckpanic
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class PauseButton extends SpriteComponent
     with TapCallbacks, HasGameRef<PixelAdventure> {
@@ -18,7 +18,6 @@ class PauseButton extends SpriteComponent
   void onTapUp(TapUpEvent event) {
     game.pauseEngine();
     game.overlays.add('PauseMenu');
-    // TODO: implement onTapUp
     super.onTapUp(event);
   }
 }

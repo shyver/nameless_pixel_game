@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class SettingsMenu extends StatelessWidget {
   final PixelAdventure game;
-  SettingsMenu({Key? key, required this.game}) : super(key: key);
+  const SettingsMenu({Key? key, required this.game}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,8 @@ class SettingsMenu extends StatelessWidget {
             ),
           ),
         ),
-        Text('Settings')
+        const Text('Settings')
       ]),
     );
-    // TODO: implement build
   }
 }

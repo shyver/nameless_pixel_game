@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class LevelSelector extends StatelessWidget {
   final PixelAdventure game;
-  LevelSelector({super.key, required this.game});
+  const LevelSelector({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class LevelSelector extends StatelessWidget {
             } else {
               nameIndex = '$levelIndex';
             }
-            return Container(
+            return SizedBox(
               width: 100,
               height: 100,
               child: TextButton(
@@ -71,6 +71,6 @@ class LevelSelector extends StatelessWidget {
         const SizedBox()
       ]),
     );
-    // TODO: implement build
+    
   }
 }

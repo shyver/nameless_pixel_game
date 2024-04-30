@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
-import 'package:flame/sprite.dart';
-import 'package:flame/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:pixel_adventure/components/fruits_hud.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/components/fruits_hud.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class SkinSelector extends StatelessWidget {
   final PixelAdventure game;
@@ -14,7 +10,7 @@ class SkinSelector extends StatelessWidget {
     'Pink Man',
     'Ninja Frog',
   ];
-  SkinSelector({Key? key, required this.game}) : super(key: key);
+  const SkinSelector({Key? key, required this.game}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +26,7 @@ class SkinSelector extends StatelessWidget {
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(
           width: game.size.x,
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -99,7 +95,7 @@ class SkinSelector extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 9,
                           ),
                           Text(
@@ -113,7 +109,7 @@ class SkinSelector extends StatelessWidget {
                                 fontSize: 24),
                           ),
                           (game.openSkins ?? []).contains(e)
-                              ? SizedBox()
+                              ? const SizedBox()
                               : RawImage(
                                   fit: BoxFit.fitHeight,
                                   height: 20,

@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:peckpanic/pixel_adventure.dart';
 
 class Spikes extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
-  final stuckTo;
+  final String stuckTo;
   Spikes({super.position, super.size, this.stuckTo = 'ground'});
 
   @override
@@ -28,7 +27,6 @@ class Spikes extends SpriteAnimationComponent with HasGameRef<PixelAdventure> {
         SpriteAnimationData.sequenced(
             amount: 1, stepTime: 0.05, textureSize: Vector2.all(16)));
 
-    // TODO: implement onLoad
     return super.onLoad();
   }
 }

@@ -1,6 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.SpiceDEV.peckpanic"
+>
     <application
-        android:label="pixel_adventure"
+        android:label="Peck Panic!"
         android:icon="@mipmap/ic_launcher"
         android:name="androidx.multidex.MultiDexApplication"
         >
@@ -34,6 +36,7 @@
             android:value="2" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8686777117848080~2828955653"/>
+            android:value="ca-app-pub-8691251335190541~3784848050"/>
     </application>
+ 
 </manifest>

@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level_11.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
@@ -48,6 +48,46 @@
                 "y": 184.8257006151743
             }
         },
+        "C:/Users/21627/Downloads/Telegram Desktop/level_08 (2).tmx": {
+            "scale": 1.5076086956521737,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.0432588320116,
+                "y": 184.06633020908438
+            }
+        },
+        "C:/Users/21627/Downloads/Telegram Desktop/level_10 (2).tmx": {
+            "scale": 1.5076086956521737,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.0432588320116,
+                "y": 184.06633020908438
+            }
+        },
+        "C:/Users/21627/Downloads/Telegram Desktop/level_11 (2).tmx": {
+            "scale": 1.5076086956521737,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.379956741168,
+                "y": 183.40302811824083
+            }
+        },
+        "C:/Users/21627/Downloads/Telegram Desktop/level_11.tmx": {
+            "scale": 1.5076086956521737,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.0432588320116,
+                "y": 184.06633020908438
+            }
+        },
+        "C:/Users/21627/Downloads/Telegram Desktop/level_12.tmx": {
+            "scale": 1.5076086956521737,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.379956741168,
+                "y": 183.40302811824083
+            }
+        },
         "C:/Users/21627/Downloads/Telegram Desktop/pixel_adventure.tsx": {
             "scaleInDock": 1
         },
@@ -59,8 +99,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 338.3333333333333,
-                "y": 153.66666666666663
+                "x": 318.3333333333333,
+                "y": 182.33333333333337
             }
         },
         "level_02.tmx": {
@@ -71,8 +111,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 291.66666666666663,
-                "y": 206.33333333333337
+                "x": 523,
+                "y": 207.66666666666663
             }
         },
         "level_03.tmx": {
@@ -80,11 +120,11 @@
                 2,
                 3
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 419.25,
-                "y": 192.75
+                "x": 523,
+                "y": 207.66666666666663
             }
         },
         "level_04.tmx": {
@@ -95,8 +135,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 321,
-                "y": 232.33333333333337
+                "x": 523,
+                "y": 207.66666666666663
             }
         },
         "level_05.tmx": {
@@ -107,8 +147,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 321,
-                "y": 238.33333333333337
+                "x": 523,
+                "y": 207.66666666666663
             }
         },
         "level_06.tmx": {
@@ -116,11 +156,11 @@
                 2,
                 3
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 380.25,
-                "y": 225.25
+                "x": 523,
+                "y": 207.66666666666663
             }
         },
         "level_07.tmx": {
@@ -131,16 +171,16 @@
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 352.75,
-                "y": 175.25
+                "x": 472.25,
+                "y": 201.75
             }
         },
         "level_08.tmx": {
-            "scale": 1.53484375,
+            "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 320.2280362414741,
-                "y": 184.0578234755166
+                "x": 377.25,
+                "y": 205.75
             }
         },
         "level_09.tmx": {
@@ -151,8 +191,8 @@
             "scale": 1.53484375,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 320.2280362414741,
-                "y": 184.0578234755166
+                "x": 518.2938002646849,
+                "y": 207.51297974142318
             }
         },
         "level_10.tmx": {
@@ -163,8 +203,8 @@
             "scale": 1.53484375,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 320.2280362414741,
-                "y": 184.0578234755166
+                "x": 518.2938002646849,
+                "y": 207.51297974142318
             }
         },
         "level_11.tmx": {
@@ -175,8 +215,16 @@
             "scale": 1.53484375,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 320.2280362414741,
-                "y": 184.0578234755166
+                "x": 518.2938002646849,
+                "y": 207.51297974142318
+            }
+        },
+        "level_12.tmx": {
+            "scale": 1.53484375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 518.2938002646849,
+                "y": 207.51297974142318
             }
         },
         "pixel_adventure.tsx": {
@@ -191,33 +239,22 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "pixel_adventure.tsx",
-        "level_01.tmx",
-        "level_02.tmx",
-        "level_04.tmx",
-        "level_05.tmx",
-        "level_06.tmx",
-        "level_07.tmx",
-        "level_03.tmx",
-        "level_09.tmx",
-        "level_10.tmx",
-        "level_11.tmx"
     ],
     "project": "pixel_adventure.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "pixel_adventure.tsx",
-        "level_01.tmx",
-        "level_02.tmx",
-        "level_04.tmx",
-        "level_05.tmx",
-        "level_06.tmx",
-        "level_07.tmx",
-        "level_03.tmx",
-        "level_09.tmx",
-        "level_10.tmx",
+        "level_08.tmx",
+        "level_12.tmx",
         "level_11.tmx",
-        "level_08.tmx"
+        "level_10.tmx",
+        "level_09.tmx",
+        "level_03.tmx",
+        "level_07.tmx",
+        "level_06.tmx",
+        "level_05.tmx",
+        "level_04.tmx",
+        "level_02.tmx",
+        "level_01.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
